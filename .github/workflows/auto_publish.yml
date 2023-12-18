@@ -7,8 +7,8 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: dispatch trigger
-      uses: ./.github/workflows/release.yml
+    # runs-on: ubuntu-latest
+    # steps:
+    # - uses: actions/checkout@v1
+    # - name: dispatch trigger
+    uses: ./.github/workflows/release.yml
