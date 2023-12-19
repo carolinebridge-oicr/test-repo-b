@@ -5,6 +5,7 @@ on:
   repository_dispatch:
     types:
       - auto_publish
+  workflow_dispatch:
 
 jobs:
   bump:
