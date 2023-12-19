@@ -1,0 +1,21 @@
+# simulate what we want on the dash_jbrowse repo
+name: Receive dispatch (publish)
+
+on:
+  repository_dispatch:
+    types:
+      - auto_publish
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: MeilCli/bump-release-action@v1
+        with:
+          config_path: '.github/bump.yml'
+          bump: 'minor'
+  release:
+    uses: ./.github/workflows/release.yml
+  # repo_dispatch:
+  #   uses: ./.github/workflows/repo_dispatch.yml
