@@ -14,6 +14,13 @@ branch:
   create-minor-version-branch: true
   bump-version-commit-prefix: 'v'
   bump-version-commit-postfix: ''
+categories:
+  - title: ''
+    labels:
+      - 'VersionBump'
+    commits:
+      - 'v'
+    changes-prefix: 'Automatic JBrowse dependency upgrade: '
 bump:
   default: 'minor'
   major:
