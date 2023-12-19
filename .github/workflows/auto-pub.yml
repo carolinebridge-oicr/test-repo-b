@@ -15,7 +15,7 @@ jobs:
       - uses: MeilCli/bump-release-action@v1
         with:
           config_path: '.github/bump.yml'
-          bump: 'minor'
+          bump: 'patch'
   release:
     uses: ./.github/workflows/release.yml
   # repo_dispatch:
