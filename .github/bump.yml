@@ -16,10 +16,8 @@ branch:
   bump-version-commit-postfix: ''
 categories:
   - title: ''
-    labels:
-      - 'VersionBump'
     commits:
-      - 'v'
+      - 'Upgrading JBrowse version'
     changes-prefix: 'Automatic JBrowse dependency upgrade: '
 bump:
   default: 'minor'
