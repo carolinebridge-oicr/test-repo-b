@@ -13,15 +13,18 @@ jobs:
         uses: actions/checkout@v4
       - name: Upgrade JBrowse version
         run: |
-          sed -i 's/.*@jbrowse/react-circular-genome-view.*/c\    "@jbrowse/react-circular-genome-view": "^${{github.event.client_payload.version}}",' package.json
-          sed -i 's/.*@jbrowse/react-linear-genome-view.*/c\    "@jbrowse/react-linear-genome-view": "^${{github.event.client_payload.version}}",' package.json
+          sed -i 's|.*@jbrowse/react-circular-genome-view.*|c\    "@jbrowse/react-circular-genome-view": "^${{github.event.client_payload.version}}",' package.json
+          sed -i 's|.*@jbrowse/react-linear-genome-view.*|c\    "@jbrowse/react-linear-genome-view": "^${{github.event.client_payload.version}}",' package.json
       - name: Commit and push changes
         run : |
-          git config --global user.name "carolinebridge-oicr"
+          git config --global user.name "cbridge-oicr"
           git config --global user.email "cbridge@oicr.on.ca"
           git add -A
           git commit -m "Upgrading JBrowse version"
           git push
+  # take repository_dispatch output (jbrowse version) and use it to change
+  # package.json and/or requirements.txt
+  # make a commit and push "Upgrading JBrowse version"
   bump: # creates new patch release with next version of package
     runs-on: ubuntu-latest
     steps:
