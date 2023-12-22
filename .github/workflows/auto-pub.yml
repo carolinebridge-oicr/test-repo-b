@@ -16,7 +16,7 @@ jobs:
           sed -i 's|.*@jbrowse/react-linear-genome-view.*|    "@jbrowse/react-linear-genome-view": "^${{github.event.client_payload.version}}",|' package.json
       - name: Commit and push changes
         run : |
-          git config --global user.name "cbridge-oicr"
+          git config --global user.name "carolinebridge-oicr"
           git config --global user.email "cbridge@oicr.on.ca"
           git add -A
           git commit -m "Upgrading JBrowse version"
