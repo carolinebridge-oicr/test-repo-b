@@ -12,8 +12,8 @@ jobs:
       - name: Upgrade JBrowse version
         uses: actions/checkout@v4
       - run: |
-          sed -i 's|.*@jbrowse/react-circular-genome-view.*|c\    "@jbrowse/react-circular-genome-view": "^${{github.event.client_payload.version}}",|' package.json
-          sed -i 's|.*@jbrowse/react-linear-genome-view.*|c\    "@jbrowse/react-linear-genome-view": "^${{github.event.client_payload.version}}",|' package.json
+          sed -i 's|.*@jbrowse/react-circular-genome-view.*|    "@jbrowse/react-circular-genome-view": "^${{github.event.client_payload.version}}",|' package.json
+          sed -i 's|.*@jbrowse/react-linear-genome-view.*|    "@jbrowse/react-linear-genome-view": "^${{github.event.client_payload.version}}",|' package.json
       - name: Commit and push changes
         run : |
           git config --global user.name "cbridge-oicr"
