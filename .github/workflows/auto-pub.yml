@@ -26,6 +26,7 @@ jobs:
   # package.json and/or requirements.txt
   # make a commit and push "Upgrading JBrowse version"
   bump: # creates new patch release with next version of package
+    needs: upgrade
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
