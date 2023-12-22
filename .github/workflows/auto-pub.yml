@@ -14,6 +14,8 @@ jobs:
         with:
           ref: ${{github.event.client_payload.ref}}
       - run: |
+          echo ${{github.event}}
+      - run: |
           sed -i 's|.*@jbrowse/react-circular-genome-view.*|c\    "@jbrowse/react-circular-genome-view": "^${{github.event.inputs.version}}",|' package.json
           sed -i 's|.*@jbrowse/react-linear-genome-view.*|c\    "@jbrowse/react-linear-genome-view": "^${{github.event.inputs.version}}",|' package.json
       - name: Commit and push changes
