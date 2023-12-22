@@ -9,10 +9,11 @@ jobs:
   upgrade: # upgrades the contingent files with the new JBrowse version
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
       - name: Upgrade JBrowse version
-        run: |
+        uses: actions/checkout@v4
+        with:
+          ref: ${{github.event.client_payload.ref}}
+      - run: |
           sed -i 's|.*@jbrowse/react-circular-genome-view.*|c\    "@jbrowse/react-circular-genome-view": "^${{github.event.client_payload.version}}",|' package.json
           sed -i 's|.*@jbrowse/react-linear-genome-view.*|c\    "@jbrowse/react-linear-genome-view": "^${{github.event.client_payload.version}}",|' package.json
       - name: Commit and push changes
