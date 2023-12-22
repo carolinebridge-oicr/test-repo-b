@@ -26,7 +26,3 @@ jobs:
         with:
           config_path: '.github/bump.yml'
           bump: 'patch'
-  release: # invokes the release process
-    uses: ./.github/workflows/release.yml
-  # repo_dispatch: # dispatches successful release to other dependent packages
-  #   uses: ./.github/workflows/repo_dispatch.yml
