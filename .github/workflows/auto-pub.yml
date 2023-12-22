@@ -1,22 +1,36 @@
-# simulate what we want on the dash_jbrowse repo
 name: Receive dispatch (publish)
 
 on:
   repository_dispatch:
     types:
       - auto_publish
-  workflow_dispatch:
 
 jobs:
-  bump:
+  upgrade: # upgrades the contingent files with the new JBrowse version
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Upgrade JBrowse version
+        run: |
+          sed -i 's/.*@jbrowse/react-circular-genome-view.*/c\    "@jbrowse/react-circular-genome-view": "^${{github.event.client_payload.version}}",' package.json
+          sed -i 's/.*@jbrowse/react-linear-genome-view.*/c\    "@jbrowse/react-linear-genome-view": "^${{github.event.client_payload.version}}",' package.json
+      - name: Commit and push changes
+        run : |
+          git config --global user.name "carolinebridge-oicr"
+          git config --global user.email "cbridge@oicr.on.ca"
+          git add -A
+          git commit -m "Upgrading JBrowse version"
+          git push
+  bump: # creates new patch release with next version of package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - uses: MeilCli/bump-release-action@v1
         with:
           config_path: '.github/bump.yml'
           bump: 'patch'
-  release:
+  release: # invokes the release process
     uses: ./.github/workflows/release.yml
-  # repo_dispatch:
+  # repo_dispatch: # dispatches successful release to other dependent packages
   #   uses: ./.github/workflows/repo_dispatch.yml
