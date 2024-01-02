@@ -28,6 +28,9 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Bump version
         uses: MeilCli/bump-release-action@v1
         with:
