@@ -28,8 +28,8 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "@jbrowse/react-circular-genome-view": "^v1.0.9",
-    "@jbrowse/react-linear-genome-view": "^v1.0.9",
+    "@jbrowse/react-circular-genome-view": "^v.1.0.10",
+    "@jbrowse/react-linear-genome-view": "^v.1.0.10",
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
