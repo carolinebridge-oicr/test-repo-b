@@ -26,3 +26,5 @@ jobs:
         with:
           config_path: '.github/bump.yml'
           bump: 'patch'
+  release:
+    uses: ./.github/workflows/release.yml
