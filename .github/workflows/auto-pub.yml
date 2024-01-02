@@ -21,21 +21,14 @@ jobs:
           git add -A
           git commit -m "Upgrading JBrowse version"
           git push
-  release:
-    needs: upgrade
-    uses: ./.github/workflows/release.yml
-  bump:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - name: Bump version
         uses: MeilCli/bump-release-action@v1
         with:
           config_path: '.github/bump.yml'
           bump: 'patch'
+  release:
+    needs: upgrade
+    uses: ./.github/workflows/release.yml
   dispatch:
-    needs: bump
+    needs: release
     uses: ./.github/workflows/repo_dispatch.yml
