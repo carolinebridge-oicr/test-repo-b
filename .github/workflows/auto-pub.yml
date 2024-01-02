@@ -31,7 +31,7 @@ jobs:
       - name: Bump version
         uses: MeilCli/bump-release-action@v1
         with:
-          config_path: 'carolinebridge-oicr/test-repo-b/.github/bump.yml@main'
+          config_path: '.github/bump.yml'
           bump: 'patch'
   dispatch:
     needs: bump
