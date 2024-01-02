@@ -1,0 +1,22 @@
+name: Repository dispatch (publish)
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  repo_dispatch:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo:
+          - 'https://github.com/carolinebridge-oicr/test-repo-c'
+    steps:
+      - name: Dispatch dash_jbrowse release event to dependent GMOD repositories
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.ACTIONS_KEY }}
+          repository: ${{ matrix.repo }}
+          event-type: auto_publish
+          client-payload: '{"version": "${{ github.event.release.tag_name }}"}'
