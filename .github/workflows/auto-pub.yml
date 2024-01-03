@@ -30,5 +30,11 @@ jobs:
     needs: upgrade
     uses: ./.github/workflows/release.yml
   dispatch:
-    needs: release
-    uses: ./.github/workflows/repo_dispatch.yml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Internal repository dispatch for release event
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.ACTIONS_KEY }}
+          event-type: request_dispatch
+          client-payload: '{"version": "${{ github.event.release.tag_name }}"}'
