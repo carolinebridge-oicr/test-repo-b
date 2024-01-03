@@ -30,6 +30,7 @@ jobs:
     needs: upgrade
     uses: ./.github/workflows/release.yml
   dispatch:
+    needs: release
     runs-on: ubuntu-latest
     steps:
       - name: Internal repository dispatch for release event
