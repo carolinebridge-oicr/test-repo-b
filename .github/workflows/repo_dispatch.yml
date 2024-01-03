@@ -15,7 +15,7 @@ jobs:
     steps:
       - run: echo ${{ github.event.client_payload.version }}
       - name: Dispatch dash_jbrowse release event to dependent GMOD repositories
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.ACTIONS_KEY }}
           repository: ${{ matrix.repo }}
