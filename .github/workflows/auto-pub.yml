@@ -33,7 +33,9 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ job.upgrade.outputs.event.release.tag_name }}
+      - run: echo ${{ job.upgrade.outputs.release.event.release.tag_name }}
+      - run: echo ${{ job.upgrade.outputs.current_version }}
+      - run: echo ${{ job.upgrade.outputs.next_version }}
       - name: Internal repository dispatch for release event
         uses: peter-evans/repository-dispatch@v1
         with:
