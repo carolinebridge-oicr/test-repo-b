@@ -33,9 +33,10 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ job.upgrade.outputs.event.release.tag_name }}
       - name: Internal repository dispatch for release event
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.ACTIONS_KEY }}
           event-type: request_dispatch
-          client-payload: '{"version": "${{ github.ref_name }}"}'
+          client-payload: '{"version": "${{ job.upgrade.outputs.event.release.tag_name }}"}'
