@@ -30,7 +30,7 @@ jobs:
     needs: upgrade
     uses: ./.github/workflows/release.yml
   dispatch:
-    needs: release
+    needs: [ release, upgrade ]
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ job.upgrade.outputs.release.event.release.tag_name }}
