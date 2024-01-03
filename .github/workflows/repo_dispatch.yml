@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         repo:
-          - 'https://github.com/carolinebridge-oicr/test-repo-c'
+          - 'carolinebridge-oicr/test-repo-c'
     steps:
       - run: echo ${{ github.event.client_payload.version }}
       - name: Dispatch dash_jbrowse release event to dependent GMOD repositories
