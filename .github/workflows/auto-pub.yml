@@ -9,7 +9,7 @@ jobs:
   upgrade: # upgrades package files with the new JBrowse version
     runs-on: ubuntu-latest
     outputs:
-      vers: ${{ steps.bump.outputs.current_version }}
+      vers: ${{ steps.bump.outputs.next_version }}
     steps:
       - name: Upgrade JBrowse version
         uses: actions/checkout@v4
@@ -42,4 +42,4 @@ jobs:
         with:
           token: ${{ secrets.ACTIONS_KEY }}
           event-type: request_dispatch
-          client-payload: '{"version": "${{ job.upgrade.outputs.event.release.tag_name }}"}'
+          client-payload: '{"version": "${{ needs.upgrade.outputs.vers }}"}'
